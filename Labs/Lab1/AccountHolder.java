@@ -20,6 +20,6 @@ public class AccountHolder
 
     public void MonthlyInterest()//Calculates our monthly interest
     {
-        balance += balance * (annualInterestRate / 12.0)
+        balance += balance * (annualInterestRate / 12.0);
     }
 }
