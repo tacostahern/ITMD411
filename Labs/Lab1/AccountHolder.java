@@ -1,6 +1,6 @@
 public class AccountHolder
 {
-    public static double annualInterestRate;
+    public static double annualInterestRate = 0.04;
     public double balance;
 
     public AccountHolder(double balance)
@@ -10,7 +10,7 @@ public class AccountHolder
 
     public void deposit(double depo)
     {
-        balance += deposit; //Adds deposit to our balance
+        balance += depo; //Adds deposit to our balance
     }
 
     public void withdrawal(double with)//balance cannot drop below $50
