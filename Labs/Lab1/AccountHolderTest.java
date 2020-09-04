@@ -6,17 +6,17 @@ public class AccountHolderTest
     {
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Please enter your balance: ");
+        System.out.print("Please enter your balance: ");
         double balance = scan.nextDouble();
 
         //Error trapping here for negative balance
         AccountHolder account = new AccountHolder(balance);
 
-        System.out.println("Please enter in a deposit amount: ");
+        System.out.print("Please enter in a deposit amount: ");
         double deposit = scan.nextDouble();
         account.deposit(deposit);
 
-        System.out.println("Please enter in a withdrawal amount");
+        System.out.print("Please enter in a withdrawal amount: ");
         double withdrawal = scan.nextDouble();
         account.withdrawal(withdrawal);
 
