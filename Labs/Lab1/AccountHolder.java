@@ -5,7 +5,13 @@ public class AccountHolder
 
     public AccountHolder(double balance)
     {
-        this.balance = balance; //Need error message for negative balance
+        if(balance < 0)
+        {
+            System.out.println("Error: Balance cannot be negative! Setting balance to 0!");
+            this.balance = 0;
+        }
+        else
+            this.balance = balance; //Need error message for negative balance
     }
 
     public void deposit(double depo)
@@ -15,7 +21,10 @@ public class AccountHolder
 
     public void withdrawal(double with)//balance cannot drop below $50
     {
-        balance -= with; //Need error trapping
+        if (balance - with < 50)
+            System.out.println("Error: Account balance must be at least $50! Withdrawal cancelled!");
+        else
+            this.balance -= with; //Need error trapping
     }
 
     public void MonthlyInterest()//Calculates our monthly interest
