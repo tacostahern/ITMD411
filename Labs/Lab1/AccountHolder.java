@@ -1,6 +1,6 @@
 public class AccountHolder
 {
-    public static double annualInterestRate = 0.04;
+    public static double annualInterestRate;
     public double balance;
 
     public AccountHolder(double balance)
