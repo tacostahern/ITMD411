@@ -22,7 +22,8 @@ public class AccountHolderTest
         account.withdrawal(withdrawal);
 
         account.MonthlyInterest();
-        System.out.println("Balance: $" + account.balance);
+        System.out.printf("Balance: $%.2f", account.balance);
+        scan.close();
 
     }
 }

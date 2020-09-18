@@ -7,8 +7,7 @@ public class AccountHolder
     {
         if(balance < 0)
         {
-            System.out.println("Error: Balance cannot be negative! Setting balance to 0!");
-            this.balance = 0;
+            throw new IllegalArgumentException("Balance cannot be negative!");
         }
         else
             this.balance = balance; //Need error message for negative balance
