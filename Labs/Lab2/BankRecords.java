@@ -1,3 +1,10 @@
+/*
+Author: Tony Acosta Hernandez
+Course: ITMD 411
+Program description: This program contains the BankRecords class, which contains several private attributes pertaining to records, as well as a couple static
+arraylists to store objects of the class. It extends the Client abstract class, and thus implements readData(), processData(), printData(), which takes in the data from a file and stores it
+in array, then stores it in the BankRecords arraylist, and then prints out the data, respectively.
+*/
 import java.util.*;
 import java.io.*; 
 public class BankRecords extends Client{
