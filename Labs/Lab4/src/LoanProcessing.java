@@ -1,4 +1,5 @@
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class LoanProcessing extends BankRecords{
 
@@ -15,15 +16,25 @@ public class LoanProcessing extends BankRecords{
 		
 		
 		// Extract data from result set
-			while (rs.next()) {
-			// Retrieve data by column name (i.e., for id,income,pep)
-			
+			try {
+				while (rs.next()) {
+				// Retrieve data by column name (i.e., for id,income,pep)
+				
 
 
-			// Display values for id,income,pep
-			
-		      }
-		rs.close(); // closes result set object
+				// Display values for id,income,pep
+				
+				  }
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		try {
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} // closes result set object
 
 
 	}

@@ -25,7 +25,7 @@ public class Dao {
 
 			stmt = conn.connect().createStatement();
 
-			String sql = "CREATE TABLE yourTableName_tab " + "(pid INTEGER not NULL AUTO_INCREMENT, "
+			String sql = "CREATE TABLE t_acos_tab " + "(pid INTEGER not NULL AUTO_INCREMENT, "
 					+ " id VARCHAR(10), " + " income numeric(8,2), " + " pep VARCHAR(4), " + " PRIMARY KEY ( pid ))";
 
 			stmt.executeUpdate(sql);
@@ -51,7 +51,7 @@ public class Dao {
 				// finish string assignment to insert all object data
 				// (id, income, pep) into your database table
 
-				sql = "                  ";
+				sql = "INSERT INTO t_acos_tab(id, income, pep)" + "VALUES(' " + robjs[i].getId() + "', ' " + robjs[i].getIncome() + "', ' " + robjs[i].getPep() + "')";
 
 				stmt.executeUpdate(sql);
 			}
@@ -64,11 +64,26 @@ public class Dao {
 	public ResultSet retrieveRecords() {
 		 ResultSet rs = null;
 
-		 stmt = conn.connect().createStatement();
+		 try {
+			stmt = conn.connect().createStatement();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		 String sql = "SELECT * from yourTableName_tab";
-		 rs = stmt.executeQuery(sql);
-		 conn.connect().close();
+		 String sql = "SELECT * from t_acos_tab";
+		 try {
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 try {
+			conn.connect().close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		 return rs;
 		}
 
