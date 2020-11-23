@@ -1,0 +1,7 @@
+Average income for Females: $28646.32
+Average income for Males: $27225.83
+Number of Females with a mortgage and savings account: 71
+Innercity region males with a car & 1 child: 15
+Rural region males with a car & 1 child: 9
+Suburban region males with a car & 1 child: 3
+Town region males with a car & 1 child: 7
