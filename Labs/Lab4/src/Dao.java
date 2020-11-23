@@ -25,8 +25,7 @@ public class Dao {
 
 			stmt = conn.connect().createStatement();
 
-			String sql = "CREATE TABLE t_acos_tab " + "(pid INTEGER not NULL AUTO_INCREMENT, "
-					+ " id VARCHAR(10), " + " income numeric(8,2), " + " pep VARCHAR(4), " + " PRIMARY KEY ( pid ))";
+			String sql = "CREATE TABLE t_acos_tab " + "(pid INTEGER not NULL AUTO_INCREMENT, " + " id VARCHAR(10), " + " income numeric(8,2), " + " pep VARCHAR(4), " + " PRIMARY KEY ( pid ))";
 
 			stmt.executeUpdate(sql);
 			System.out.println("Created table in given database...");

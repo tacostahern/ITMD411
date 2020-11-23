@@ -75,7 +75,7 @@ public class BankRecords extends Client{
             /*continue processing arraylist item values into each array object-> robjs[] by index*/
             idx++;
         }
-        printData();
+        //printData();
     }
 
     public void printData(){
