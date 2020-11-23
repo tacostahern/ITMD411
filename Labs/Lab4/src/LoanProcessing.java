@@ -20,9 +20,9 @@ public class LoanProcessing extends BankRecords {
 				System.out.println("ID:\t\tINCOME\t\tPEP");
 				while (rs.next()) {
 				// Retrieve data by column name (i.e., for id,income,pep)
-					String id = rs.getString(2);
-					double income = rs.getDouble(3);
-					String pep = rs.getString(4);
+					String id = rs.getString(1);
+					double income = rs.getDouble(2);
+					String pep = rs.getString(3);
 				// Display values for id,income,pep
 					System.out.println(id + "\t\t" + income + "\t\t" + pep);
 				  }
