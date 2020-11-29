@@ -25,7 +25,7 @@ public class Dao {
 
 			stmt = conn.connect().createStatement();
 
-			String sql = "CREATE TABLE t_acos_tab2 " + "(pid INTEGER not NULL AUTO_INCREMENT, " + " id VARCHAR(10), "
+			String sql = "CREATE TABLE t_acos_tab4 " + "(pid INTEGER not NULL AUTO_INCREMENT, " + " id VARCHAR(10), "
 					+ " income numeric(8,2), " + " pep VARCHAR(4), " + " PRIMARY KEY ( pid ))";
 
 			stmt.executeUpdate(sql);
@@ -40,6 +40,8 @@ public class Dao {
 	// INSERT INTO METHOD
 	public void insertRecords(BankRecords[] robjs) {
 		try {
+			System.out.println("Connecting to a selected database for Inserts...");
+			System.out.println("Connected database successfully...");
 			// Execute a query
 			System.out.println("Inserting records into the table...");
 			stmt = conn.connect().createStatement();
@@ -51,11 +53,12 @@ public class Dao {
 				// finish string assignment to insert all object data
 				// (id, income, pep) into your database table
 
-				sql = "INSERT INTO t_acos_tab2(id, income, pep)" + "VALUES(' " + robjs[i].getId() + "', ' "
+				sql = "INSERT INTO t_acos_tab4(id, income, pep)" + "VALUES(' " + robjs[i].getId().toUpperCase() + "', ' "
 						+ robjs[i].getIncome() + "', ' " + robjs[i].getPep() + "')";
 
 				stmt.executeUpdate(sql);
 			}
+			System.out.println("Inserted records into the table...");
 			conn.connect().close();
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -66,13 +69,16 @@ public class Dao {
 		ResultSet rs = null;
 
 		try {
+			System.out.println("Connecting to a selected database for Record retrievals...");
 			stmt = conn.connect().createStatement();
+			System.out.println("Connected database successfully...");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		String sql = "SELECT id,income, pep from t_acos_tab2 ORDER BY pep DESC";
+		
+		System.out.println("Creating Select statement...");
+		String sql = "SELECT id,income, pep from t_acos_tab4 ORDER BY pep DESC";
 		try {
 			rs = stmt.executeQuery(sql);
 		} catch (SQLException e) {
