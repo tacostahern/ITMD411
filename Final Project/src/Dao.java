@@ -107,12 +107,12 @@ public class Dao {
 		}
 	}
 
-	public int insertRecords(String ticketName, String ticketDesc) {
+	public int insertRecords(String ticketName, String ticketDesc, String startDate, String endDate) {
 		int id = 0;
 		try {
 			statement = getConnection().createStatement();
-			statement.executeUpdate("Insert into jpapa_tickets" + "(ticket_issuer, ticket_description) values(" + " '"
-					+ ticketName + "','" + ticketDesc + "')", Statement.RETURN_GENERATED_KEYS);
+			statement.executeUpdate("Insert into tacos_tickets" + "(ticket_issuer, ticket_description, start_date, end_date) values(" + " '"
+					+ ticketName + "','" + ticketDesc + "','" + startDate + "','" + endDate + "')", Statement.RETURN_GENERATED_KEYS);
 
 			// retrieve ticket id number newly auto generated upon record insertion
 			ResultSet resultSet = null;
@@ -135,7 +135,7 @@ public class Dao {
 		ResultSet results = null;
 		try {
 			statement = connect.createStatement();
-			results = statement.executeQuery("SELECT * FROM jpapa_tickets");
+			results = statement.executeQuery("SELECT * FROM tacos_tickets");
 			//connect.close();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
