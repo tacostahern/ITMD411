@@ -130,13 +130,15 @@ public class Dao {
 
 	}
 
-	public ResultSet readRecords(boolean isAdmin) { //passing in isAdmin boolean to see if we are dealing with an administrator
+	public ResultSet readRecords(boolean isAdmin, String user) { //passing in isAdmin boolean to see if we are dealing with an administrator, if not we will use the string username
 
 		ResultSet results = null;
 		try {
 			statement = connect.createStatement();
 			if(isAdmin == true)
 				results = statement.executeQuery("SELECT * FROM tacos_tickets");
+			else
+				results = statement.executeQuery("SELECT * FROM tacos_tickets WHERE ticket_issuer = '" + user + "'");
 			
 			//connect.close();
 		} catch (SQLException e1) {
