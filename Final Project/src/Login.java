@@ -62,18 +62,22 @@ public class Login extends JFrame {
 				count = count + 1;
 				// verify credentials of user (MAKE SURE TO CHANGE TO YOUR TABLE NAME BELOW)
 
-				String query = "SELECT * FROM jpapa_users WHERE uname = ? and upass = ?;";
+				String query = "SELECT * FROM tacos_users WHERE uname = ? and upass = ?;";
 				try (PreparedStatement stmt = conn.getConnection().prepareStatement(query)) {
 					stmt.setString(1, txtUname.getText());
 					stmt.setString(2, txtPassword.getText());
 					ResultSet rs = stmt.executeQuery();
 					if (rs.next()) {
 						admin = rs.getBoolean("admin"); // get table column value
+						System.out.println(admin);
 						new Tickets(admin);
 						setVisible(false); // HIDE THE FRAME
 						dispose(); // CLOSE OUT THE WINDOW
 					} else
+					{
 						lblStatus.setText("Try again! " + (3 - count) + " / 3 attempts left");
+						//admin = rs.getBoolean("admin");
+					}
 				} catch (SQLException ex) {
 					ex.printStackTrace();
 				}

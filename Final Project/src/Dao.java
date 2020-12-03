@@ -59,7 +59,7 @@ public class Dao {
 			System.out.println(e.getMessage());
 		}
 		// add users to user table
-		addUsers();
+		//addUsers();
 	}
 
 	public void addUsers() {
@@ -74,7 +74,7 @@ public class Dao {
 
 		// read data from file
 		try {
-			br = new BufferedReader(new FileReader(new File("./userlist.csv")));
+			br = new BufferedReader(new FileReader(new File("userlist.csv")));
 
 			String line;
 			while ((line = br.readLine()) != null) {
