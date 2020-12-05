@@ -158,6 +158,8 @@ public class Tickets extends JFrame implements ActionListener {
 		 * continue implementing any other desired sub menu items (like for update and
 		 * delete sub menus for example) with similar syntax & logic as shown above
 		 */
+		
+		// int option = JOptionPane.showConfirmDialog(null, "Delete ticket #" + ticketNum + "?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE); //for use in deleting record
 
 	}
 
