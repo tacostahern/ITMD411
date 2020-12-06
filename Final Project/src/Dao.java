@@ -134,7 +134,7 @@ public class Dao {
 		ResultSet results = null;
 		try {
 			statement = connect.createStatement();
-			if(isAdmin == true)
+			if(isAdmin)
 				results = statement.executeQuery("SELECT * FROM tacos_tickets");
 			else
 				results = statement.executeQuery("SELECT * FROM tacos_tickets WHERE ticket_issuer = '" + user + "'");
@@ -155,6 +155,7 @@ public class Dao {
 		try {
 			statement = connect.createStatement();
 			statement.executeUpdate("DELETE from tacos_tickets WHERE ticket_id = " + ticketNum);
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
