@@ -84,6 +84,7 @@ public class Tickets extends JFrame implements ActionListener {
 		mnuItemDelete.addActionListener(this);
 		mnuItemOpenTicket.addActionListener(this);
 		mnuItemViewTicket.addActionListener(this);
+		mnuItemViewTicketByNum.addActionListener(this);
 
 		 /*
 		  * continue implementing any other desired sub menu items (like 

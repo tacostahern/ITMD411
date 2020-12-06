@@ -154,7 +154,7 @@ public class Dao {
 			if(isAdmin) //this method will check if you are an admin, at which point it will return to you a ticket with that number regardless of who posted it
 				results = statement.executeQuery("SELECT * FROM tacos_tickets WHERE ticket_id = " + ticketNum);
 			else //if you aren't an admin then you can only see the ticket if it belongs to you
-				results = statement.executeQuery("SELECT * FROM tacos_tickets WHERE ticket_id = " + ticketNum + "AND WHERE ticket_issuer = '" + user + "'");
+				results = statement.executeQuery("SELECT * FROM tacos_tickets WHERE ticket_id = '" + ticketNum + "' AND ticket_issuer = '" + user + "'");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
