@@ -185,6 +185,8 @@ public class Dao {
 			
 	}
 	
+	
+	
 	public void closeTicket(int ticketNum, String endDate) {
 		
 		try {
@@ -196,6 +198,28 @@ public class Dao {
 				System.out.println("Ticket #" + ticketNum + " closed");
 			else
 				System.out.println("No Ticket Closed");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateDescription(boolean isAdmin, int ticketNum, String user, String desc) {
+		
+		try {
+			statement = connect.createStatement();
+			int updated;
+			if (isAdmin)
+				updated = statement.executeUpdate("UPDATE tacos_tickets SET ticket_description = '" + desc + "' WHERE ticket_id = " + ticketNum);
+			else 
+				updated = statement.executeUpdate("UPDATE tacos_tickets SET ticket_description = '" + desc + "' WHERE ticket_issuer = '" + user + "', AND ticket_num = " + ticketNum);
+			
+			if (updated != 0)
+				System.out.println("Ticket #" + ticketNum + " updated. New Description: " + desc);
+			else
+				System.out.println("No Ticket Updated");
+			
+				
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

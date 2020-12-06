@@ -34,6 +34,7 @@ public class Tickets extends JFrame implements ActionListener {
 	JMenuItem mnuItemViewTicket;
 	JMenuItem mnuItemViewTicketByNum; // for use in viewing tickets by a number
 	JMenuItem mnuItemCloseTicket; // for use in closing tickets
+	JMenuItem mnuItemUpdateTicketDesc; //for use in updating ticket description
 
 	public Tickets(Boolean isAdmin, String user) {
 
@@ -80,6 +81,10 @@ public class Tickets extends JFrame implements ActionListener {
 		//This will be used to close tickets, only available to admins
 		mnuItemCloseTicket = new JMenuItem("Close Ticket");
 		mnuAdmin.add(mnuItemCloseTicket);
+		
+		//This will be used to update ticket descriptions
+		mnuItemUpdateTicketDesc = new JMenuItem("Update Ticket Description");
+		mnuTickets.add(mnuItemUpdateTicketDesc);
 
 		// initialize any more desired sub menu items below
 
@@ -91,6 +96,7 @@ public class Tickets extends JFrame implements ActionListener {
 		mnuItemViewTicket.addActionListener(this);
 		mnuItemViewTicketByNum.addActionListener(this);
 		mnuItemCloseTicket.addActionListener(this);
+		mnuItemUpdateTicketDesc.addActionListener(this);
 
 		 /*
 		  * continue implementing any other desired sub menu items (like 
@@ -201,6 +207,16 @@ public class Tickets extends JFrame implements ActionListener {
 				System.out.println("Deletion cancelled");
 			else
 				dao.deleteRecords(Integer.valueOf(ticketNum));
+		} else if(e.getSource() == mnuItemUpdateTicketDesc) {
+			String ticketNum = JOptionPane.showInputDialog(null, "Enter the ticket number you want to update");
+			String ticketDesc = JOptionPane.showInputDialog(null, "Enter the new ticket description");
+			
+			int confirmation = JOptionPane.showConfirmDialog(null, "Update ticket # " + ticketNum + " description?","Confirm",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE); //confirmation menu for updating ticket number
+			
+			if (confirmation == JOptionPane.NO_OPTION)
+				System.out.println("Update cancelled");
+			else
+				dao.updateDescription(chkIfAdmin, Integer.valueOf(ticketNum), username, ticketDesc);
 		}
 		/*
 		 * continue implementing any other desired sub menu items (like for update and
