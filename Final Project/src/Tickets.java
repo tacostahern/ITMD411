@@ -160,6 +160,26 @@ public class Tickets extends JFrame implements ActionListener {
 				e1.printStackTrace();
 			}
 		}
+		
+		else if (e.getSource() == mnuItemViewTicketByNum) {
+			// retrieve all tickets details for viewing in JTable
+			try {
+				
+				int ticketNum = Integer.valueOf(JOptionPane.showInputDialog(null, "Enter the ticket number you want to view"));
+
+				// Use JTable built in functionality to build a table model and
+				// display the table model off your result set!!!
+				JTable jt = new JTable(ticketsJTable.buildTableModel(dao.ticketByNum(chkIfAdmin, ticketNum, username))); //if we are dealing with an administrator, then there should be something different printed to them
+				jt.setBounds(30, 40, 200, 400);
+				JScrollPane sp = new JScrollPane(jt);
+				add(sp);
+				setVisible(true); // refreshes or repaints frame on screen
+
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+		
 		else if (e.getSource() == mnuItemDelete) {
 			String ticketNum = JOptionPane.showInputDialog(null, "Enter the ticket number you want to delete");
 			int confirmation = JOptionPane.showConfirmDialog(null, "Delete ticket # " + ticketNum + "?","Confirm",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE); //confirmation menu for deleting

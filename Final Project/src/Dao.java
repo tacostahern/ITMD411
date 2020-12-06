@@ -146,11 +146,16 @@ public class Dao {
 		return results;
 	}
 	
-	public ResultSet ticketByNum(boolean isAdmin, int ticketNum) {
+	public ResultSet ticketByNum(boolean isAdmin, int ticketNum, String user) {
 		
 		ResultSet results = null;
 		try {
 			statement = connect.createStatement();
+			if(isAdmin)
+				results = statement.executeQuery("SELECT * FROM tacos_tickets WHERE ticket_id = " + ticketNum);
+			else
+				results = statement.executeQuery("SELECT * FROM tacos_tickets WHERE ticket_id = " + ticketNum + "AND WHERE ticket_issuer = '" + user + "'");
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
