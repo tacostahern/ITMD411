@@ -106,12 +106,12 @@ public class Dao {
 		}
 	}
 
-	public int insertRecords(String ticketName, String ticketDesc, String startDate, String endDate) {
+	public int insertRecords(String ticketName, String ticketDesc, String startDate) {
 		int id = 0;
 		try {
 			statement = getConnection().createStatement();
-			statement.executeUpdate("Insert into tacos_tickets" + "(ticket_issuer, ticket_description, start_date, end_date) values(" + " '"
-					+ ticketName + "','" + ticketDesc + "','" + startDate + "','" + endDate + "')", Statement.RETURN_GENERATED_KEYS);
+			statement.executeUpdate("Insert into tacos_tickets" + "(ticket_issuer, ticket_description, start_date) values(" + " '"
+					+ ticketName + "','" + ticketDesc + "','" + startDate + "')", Statement.RETURN_GENERATED_KEYS);
 
 			// retrieve ticket id number newly auto generated upon record insertion
 			ResultSet resultSet = null;
@@ -171,7 +171,12 @@ public class Dao {
 		
 		try { //delete the record, don't need to check for admin priviliges because this is only visible to admins
 			statement = connect.createStatement();
-			statement.executeUpdate("DELETE from tacos_tickets WHERE ticket_id = " + ticketNum);
+			int deleted = statement.executeUpdate("DELETE from tacos_tickets WHERE ticket_id = " + ticketNum);
+			
+			if (deleted != 0)
+				System.out.println("Ticket #" + ticketNum+ " Deleted");
+			else
+				System.out.println("No Ticket Deleted. Ticket #" + ticketNum + " does not exist");
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
