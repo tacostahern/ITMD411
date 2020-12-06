@@ -134,7 +134,7 @@ public class Dao {
 		ResultSet results = null;
 		try {
 			statement = connect.createStatement();
-			if(isAdmin)
+			if(isAdmin) //if they're an admin, they can view any ticket, otherwise they can only view their own
 				results = statement.executeQuery("SELECT * FROM tacos_tickets");
 			else
 				results = statement.executeQuery("SELECT * FROM tacos_tickets WHERE ticket_issuer = '" + user + "'");
@@ -145,12 +145,24 @@ public class Dao {
 		}
 		return results;
 	}
+	
+	public ResultSet ticketByNum(boolean isAdmin, int ticketNum) {
+		
+		ResultSet results = null;
+		try {
+			statement = connect.createStatement();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return results;
+	}
 	// continue coding for updateRecords implementation
 
 	// continue coding for deleteRecords implementation
 	
-	public void deleteRecords(int ticketNum)
-	{
+	public void deleteRecords(int ticketNum) {
 		
 		try {
 			statement = connect.createStatement();

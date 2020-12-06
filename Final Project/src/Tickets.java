@@ -32,6 +32,7 @@ public class Tickets extends JFrame implements ActionListener {
 	JMenuItem mnuItemDelete;
 	JMenuItem mnuItemOpenTicket;
 	JMenuItem mnuItemViewTicket;
+	JMenuItem mnuItemViewTicketByNum; // for use in viewing tickets by a number
 
 	public Tickets(Boolean isAdmin, String user) {
 
@@ -67,9 +68,13 @@ public class Tickets extends JFrame implements ActionListener {
 		mnuTickets.add(mnuItemOpenTicket);
 
 		// initialize second sub menu item for Tickets main menu
-		mnuItemViewTicket = new JMenuItem("View Ticket");
+		mnuItemViewTicket = new JMenuItem("View Tickets");
 		// add to Ticket Main menu item
 		mnuTickets.add(mnuItemViewTicket);
+		
+		//Adding this view by ticket number in ticket menu
+		mnuItemViewTicketByNum = new JMenuItem("View Ticket by Ticket Numbers");
+		mnuTickets.add(mnuItemViewTicketByNum);
 
 		// initialize any more desired sub menu items below
 
@@ -157,7 +162,7 @@ public class Tickets extends JFrame implements ActionListener {
 		}
 		else if (e.getSource() == mnuItemDelete) {
 			String ticketNum = JOptionPane.showInputDialog(null, "Enter the ticket number you want to delete");
-			int confirmation = JOptionPane.showConfirmDialog(null, "Delete ticket # " + ticketNum + "?","Confirm",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			int confirmation = JOptionPane.showConfirmDialog(null, "Delete ticket # " + ticketNum + "?","Confirm",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE); //confirmation menu for deleting
 			
 			if (confirmation == JOptionPane.NO_OPTION)
 				System.out.println("Deletion cancelled");
