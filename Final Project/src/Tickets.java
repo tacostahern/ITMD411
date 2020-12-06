@@ -154,12 +154,20 @@ public class Tickets extends JFrame implements ActionListener {
 				e1.printStackTrace();
 			}
 		}
+		else if (e.getSource() == mnuItemDelete) {
+			String ticketNum = JOptionPane.showInputDialog(null, "Enter the ticket number you want to delete");
+			int confirmation = JOptionPane.showConfirmDialog(null, "Delete ticket # " + ticketNum + "?","Confirm",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			
+			if (confirmation == JOptionPane.NO_OPTION)
+				System.out.println("Deletion cancelled");
+			else
+				dao.deleteRecords(Integer.valueOf(ticketNum));
+		}
 		/*
 		 * continue implementing any other desired sub menu items (like for update and
 		 * delete sub menus for example) with similar syntax & logic as shown above
 		 */
 		
-		// int option = JOptionPane.showConfirmDialog(null, "Delete ticket #" + ticketNum + "?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE); //for use in deleting record
 
 	}
 

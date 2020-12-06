@@ -149,19 +149,15 @@ public class Dao {
 
 	// continue coding for deleteRecords implementation
 	
-	public ResultSet deleteRecords(int ticketNum, boolean delete)
+	public void deleteRecords(int ticketNum)
 	{
-		ResultSet results = null;
 		
 		try {
 			statement = connect.createStatement();
-			String sql = "DELETE from tacos_tickets " + "WHERE tid = " + ticketNum;
-			
-			
+			statement.executeUpdate("DELETE from tacos_tickets WHERE ticket_id = " + ticketNum);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return results;
 	}
 }
