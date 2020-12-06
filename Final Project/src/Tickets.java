@@ -33,6 +33,7 @@ public class Tickets extends JFrame implements ActionListener {
 	JMenuItem mnuItemOpenTicket;
 	JMenuItem mnuItemViewTicket;
 	JMenuItem mnuItemViewTicketByNum; // for use in viewing tickets by a number
+	JMenuItem mnuItemCloseTicket; // for use in closing tickets
 
 	public Tickets(Boolean isAdmin, String user) {
 
@@ -75,6 +76,10 @@ public class Tickets extends JFrame implements ActionListener {
 		//Adding this view by ticket number in ticket menu
 		mnuItemViewTicketByNum = new JMenuItem("View Ticket by Ticket Numbers");
 		mnuTickets.add(mnuItemViewTicketByNum);
+		
+		//This will be used to close tickets, only available to admins
+		mnuItemCloseTicket = new JMenuItem("Close Ticket");
+		mnuAdmin.add(mnuItemCloseTicket);
 
 		// initialize any more desired sub menu items below
 
@@ -85,6 +90,7 @@ public class Tickets extends JFrame implements ActionListener {
 		mnuItemOpenTicket.addActionListener(this);
 		mnuItemViewTicket.addActionListener(this);
 		mnuItemViewTicketByNum.addActionListener(this);
+		mnuItemCloseTicket.addActionListener(this);
 
 		 /*
 		  * continue implementing any other desired sub menu items (like 
@@ -141,9 +147,20 @@ public class Tickets extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Ticket id: " + id + " created");
 			} else
 				System.out.println("Ticket cannot be created!!!");
-		}
-
-		else if (e.getSource() == mnuItemViewTicket) {
+		} else if(e.getSource() == mnuItemCloseTicket) { 
+			
+			
+			//get end date
+			String ticketNum = JOptionPane.showInputDialog(null, "Enter the ticket number you want to close");
+			String endDate = JOptionPane.showInputDialog(null, "Enter the end date for the ticket in YYYY-MM-DD form");
+			int confirmation = JOptionPane.showConfirmDialog(null, ("You want to close ticket #" + ticketNum), "Confirm?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			
+			if (confirmation == JOptionPane.NO_OPTION)
+				System.out.println("Ticket Closing Cancelled");
+			else
+				dao.closeTicket(Integer.valueOf(ticketNum), endDate);
+			
+		} else if (e.getSource() == mnuItemViewTicket) {
 
 			// retrieve all tickets details for viewing in JTable
 			try {
@@ -159,9 +176,7 @@ public class Tickets extends JFrame implements ActionListener {
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
-		}
-		
-		else if (e.getSource() == mnuItemViewTicketByNum) {
+		} else if (e.getSource() == mnuItemViewTicketByNum) {
 			// retrieve all tickets details for viewing in JTable
 			try {
 				
@@ -178,9 +193,7 @@ public class Tickets extends JFrame implements ActionListener {
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
-		}
-		
-		else if (e.getSource() == mnuItemDelete) {
+		} else if (e.getSource() == mnuItemDelete) {
 			String ticketNum = JOptionPane.showInputDialog(null, "Enter the ticket number you want to delete");
 			int confirmation = JOptionPane.showConfirmDialog(null, "Delete ticket # " + ticketNum + "?","Confirm",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE); //confirmation menu for deleting
 			

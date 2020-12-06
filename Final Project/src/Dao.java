@@ -182,5 +182,23 @@ public class Dao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+			
+	}
+	
+	public void closeTicket(int ticketNum, String endDate) {
+		
+		try {
+			statement = connect.createStatement();
+			
+			int updated = statement.executeUpdate("UPDATE tacos_tickets SET end_date = '" + endDate + "' WHERE ticket_id = '" + ticketNum + "'");
+			
+			if (updated != 0)
+				System.out.println("Ticket #" + ticketNum + " closed");
+			else
+				System.out.println("No Ticket Closed");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
