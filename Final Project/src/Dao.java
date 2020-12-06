@@ -151,9 +151,9 @@ public class Dao {
 		ResultSet results = null;
 		try {
 			statement = connect.createStatement();
-			if(isAdmin)
+			if(isAdmin) //this method will check if you are an admin, at which point it will return to you a ticket with that number regardless of who posted it
 				results = statement.executeQuery("SELECT * FROM tacos_tickets WHERE ticket_id = " + ticketNum);
-			else
+			else //if you aren't an admin then you can only see the ticket if it belongs to you
 				results = statement.executeQuery("SELECT * FROM tacos_tickets WHERE ticket_id = " + ticketNum + "AND WHERE ticket_issuer = '" + user + "'");
 			
 		} catch (SQLException e) {
@@ -169,7 +169,7 @@ public class Dao {
 	
 	public void deleteRecords(int ticketNum) {
 		
-		try {
+		try { //delete the record, don't need to check for admin priviliges because this is only visible to admins
 			statement = connect.createStatement();
 			statement.executeUpdate("DELETE from tacos_tickets WHERE ticket_id = " + ticketNum);
 
