@@ -133,7 +133,7 @@ public class Dao {
 
 		ResultSet results = null;
 		try {
-			statement = connect.createStatement();
+			statement = getConnection().createStatement();
 			if(isAdmin) //if they're an admin, they can view any ticket, otherwise they can only view their own
 				results = statement.executeQuery("SELECT * FROM tacos_tickets");
 			else
@@ -150,7 +150,7 @@ public class Dao {
 		
 		ResultSet results = null;
 		try {
-			statement = connect.createStatement();
+			statement = getConnection().createStatement();
 			if(isAdmin) //this method will check if you are an admin, at which point it will return to you a ticket with that number regardless of who posted it
 				results = statement.executeQuery("SELECT * FROM tacos_tickets WHERE ticket_id = " + ticketNum);
 			else //if you aren't an admin then you can only see the ticket if it belongs to you
@@ -190,7 +190,7 @@ public class Dao {
 	public void closeTicket(int ticketNum, String endDate) {
 		
 		try {
-			statement = connect.createStatement();
+			statement = getConnection().createStatement();
 			
 			int updated = statement.executeUpdate("UPDATE tacos_tickets SET end_date = '" + endDate + "' WHERE ticket_id = '" + ticketNum + "'");
 			
@@ -207,7 +207,7 @@ public class Dao {
 	public void updateDescription(boolean isAdmin, int ticketNum, String user, String desc) {
 		
 		try {
-			statement = connect.createStatement();
+			statement = getConnection().createStatement();
 			int updated;
 			if (isAdmin)
 				updated = statement.executeUpdate("UPDATE tacos_tickets SET ticket_description = '" + desc + "' WHERE ticket_id = " + ticketNum);
