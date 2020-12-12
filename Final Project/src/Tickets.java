@@ -28,7 +28,6 @@ public class Tickets extends JFrame implements ActionListener {
 
 	// Sub menu item objects for all Main menu item objects
 	JMenuItem mnuItemExit;
-	JMenuItem mnuItemUpdate;
 	JMenuItem mnuItemDelete;
 	JMenuItem mnuItemOpenTicket;
 	JMenuItem mnuItemViewTicket;
@@ -54,11 +53,6 @@ public class Tickets extends JFrame implements ActionListener {
 		mnuItemExit = new JMenuItem("Exit");
 		// add to File main menu item
 		mnuFile.add(mnuItemExit);
-
-		// initialize first sub menu items for Admin main menu
-		mnuItemUpdate = new JMenuItem("Update Ticket");
-		// add to Admin main menu item
-		mnuAdmin.add(mnuItemUpdate);
 
 		// initialize second sub menu items for Admin main menu
 		mnuItemDelete = new JMenuItem("Delete Ticket");
@@ -95,7 +89,6 @@ public class Tickets extends JFrame implements ActionListener {
 
 		/* Add action listeners for each desired menu item *************/
 		mnuItemExit.addActionListener(this);
-		mnuItemUpdate.addActionListener(this);
 		mnuItemDelete.addActionListener(this);
 		mnuItemOpenTicket.addActionListener(this);
 		mnuItemViewTicket.addActionListener(this);

@@ -61,6 +61,7 @@ public class Dao {
 		}
 		// add users to user table
 		addUsers();
+		
 	}
 
 	public void addUsers() {
