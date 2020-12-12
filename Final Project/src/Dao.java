@@ -228,6 +228,7 @@ public class Dao {
 		}
 	}
 	
+	//For entering closed tickets into the closed table
 	public void toClosedTable(int ticketNum, String admin) {
 		try {
 			statement = getConnection().createStatement();
@@ -238,6 +239,7 @@ public class Dao {
 		}	
 	}
 	
+	//For viewing closed tickets
 	public ResultSet viewClosedTable() {
 		ResultSet results = null;
 		try {
