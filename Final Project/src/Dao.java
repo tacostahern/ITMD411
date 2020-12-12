@@ -39,6 +39,7 @@ public class Dao {
 		// variables for SQL Query table creations
 		final String createTicketsTable = "CREATE TABLE tacos_tickets(ticket_id INT AUTO_INCREMENT PRIMARY KEY, ticket_issuer VARCHAR(30), ticket_description VARCHAR(200), start_date DATE, end_date DATE)";
 		final String createUsersTable = "CREATE TABLE tacos_users(uid INT AUTO_INCREMENT PRIMARY KEY, uname VARCHAR(30), upass VARCHAR(30), admin int)";
+		final String createClosedTicketsTable = "CREATE TABLE tacos_closedT(ticket_id INT PRIMARY KEY, ticket_status VARCHAR(10), ticket_closer VARCHAR(30))";
 
 		try {
 
@@ -46,6 +47,7 @@ public class Dao {
 
 			statement = getConnection().createStatement();
 
+			statement.executeUpdate(createClosedTicketsTable);
 			statement.executeUpdate(createTicketsTable);
 			statement.executeUpdate(createUsersTable);
 			System.out.println("Created tables in given database...");
@@ -224,5 +226,27 @@ public class Dao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void toClosedTable(int ticketNum, String admin) {
+		try {
+			statement = getConnection().createStatement();
+			statement.executeUpdate("Insert into tacos_closedT(ticket_id, ticket_status, ticket_closer) values('" + ticketNum + "', 'closed', '" + admin + "')");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
+	
+	public ResultSet viewClosedTable() {
+		ResultSet results = null;
+		try {
+			statement = getConnection().createStatement();
+			results = statement.executeQuery("SELECT * FROM tacos_closedT");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return results;
 	}
 }
