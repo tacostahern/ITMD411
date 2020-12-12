@@ -60,7 +60,7 @@ public class Dao {
 			System.out.println(e.getMessage());
 		}
 		// add users to user table
-		//addUsers();
+		addUsers();
 	}
 
 	public void addUsers() {
